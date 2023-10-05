@@ -120,6 +120,6 @@ app.get("/", (req, res) => {
   res.send("Book Verse server is running");
 });
 
-app.listen(port,"0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`Book Verse Server is running on port: ${port}`);
 });
