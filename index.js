@@ -83,6 +83,7 @@ async function run() {
 
       res.send({ token });
     });
+    
 //All routes
     const bookRoutes = require("./routes/allBook.js");
     const bestRoutes = require("./routes/bestAndRecentBooks");
