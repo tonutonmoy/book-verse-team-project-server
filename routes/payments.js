@@ -295,22 +295,24 @@ const is_live = false; //true for live, false for sandbox
           res.status(500).json({ message: "An error occurred" });
         }
       });
+
+
   
       //  post data SSLCommerz start  by Tonmoy
   
       router.post("/order", async (req, res) => {
         const info = req.body;
   
-        // console.log(info)
+        
   
         const random_id = new ObjectId().toString();
         const data = {
           total_amount: info?.price,
           currency: "BDT",
           tran_id: random_id, // use unique tran_id for each api call
-          success_url: `https://book-verse-server-phi.vercel.app/payment/success/${random_id}`,
-          fail_url: "https://book-verse-server-phi.vercel.app/payment/fail",
-          cancel_url: "https://book-verse-server-phi.vercel.app/payment/cancel",
+          success_url: `https://book-verse-team-project-server.up.railway.app/payment/success/${random_id}`,
+          fail_url: "https://book-verse-team-project-server.up.railway.app/payment/fail",
+          cancel_url: "https://book-verse-team-project-server.up.railway.app/payment/cancel",
           ipn_url: "http://localhost:3030/ipn",
           shipping_method: "Courier",
           product_name: "Computer.",
@@ -343,7 +345,10 @@ const is_live = false; //true for live, false for sandbox
         });
   
         //  payment success start
-        router.post("/payment/success/:id", async (req, res) => {
+      router.post("/payment/success/:id", async (req, res) => {
+          
+            
+           
           const tran_id = req.params.id;
   
           const payment_details = {
@@ -356,10 +361,11 @@ const is_live = false; //true for live, false for sandbox
           };
   
           const result = await paymentCollection.insertOne(payment_details);
-  
+          
           if (result.insertedId) {
             res.redirect(
               `https://book-verse-endcoders.netlify.app/SSLPaymentSuccess`
+              
             );
           }
         });
